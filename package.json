@@ -4,15 +4,22 @@
   "description": "Explode whitespace surrounding template keys to outside of the template string.",
   "main": "index.js",
   "scripts": {
-    "test": "standard"
+    "test": "standard && ./test.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/srilq/outerspace.git"
   },
   "keywords": [
+    "outer",
     "whitespace",
-    "template"
+    "space",
+    "template",
+    "string",
+    "template string",
+    "template function",
+    "explode",
+    "trim"
   ],
   "author": "Stef <stef@srilq.email>",
   "license": "MIT",
@@ -21,6 +28,7 @@
   },
   "homepage": "https://github.com/srilq/outerspace#readme",
   "devDependencies": {
-    "standard": "^10.0.3"
+    "standard": "^10.0.3",
+    "tape": "^4.8.0"
   }
 }

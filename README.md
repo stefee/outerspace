@@ -3,10 +3,12 @@
 [![npm version](https://img.shields.io/npm/v/outerspace.svg?style=flat-square)](https://npmjs.org/package/outerspace) [![build status](https://img.shields.io/travis/srilq/outerspace/latest.svg?style=flat-square)](https://travis-ci.org/srilq/outerspace)
 [![downloads](https://img.shields.io/npm/dm/outerspace.svg?style=flat-square)](https://npmjs.org/package/outerspace) [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/feross/standard)
 
-> Explode whitespace surrounding template keys to outside of a template string.
+> Explode whitespace surrounding expressions in a template string to outside of
+the string.
 
 Outerspace is a template function that moves leading/trailing whitespace in the
-first/last template keys to the start/end of the string (respectively).
+first/last expressions of a template string to the start/end of the string
+(respectively).
 
 ```js
 const outerspace = require('outerspace')

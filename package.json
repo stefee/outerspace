@@ -1,7 +1,7 @@
 {
   "name": "outerspace",
   "version": "0.0.2",
-  "description": "Explode whitespace surrounding template keys to outside of the template string.",
+  "description": "Explode whitespace surrounding expressions in a template string to outside of the string.",
   "main": "index.js",
   "scripts": {
     "test": "standard && ./test.js"
@@ -17,7 +17,7 @@
     "template",
     "string",
     "template string",
-    "template function",
+    "surrounding",
     "explode",
     "trim"
   ],

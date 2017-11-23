@@ -1,11 +1,9 @@
 # outerspace
 
-> Explode whitespace surrounding template keys to outside of the template string.
+> Explode whitespace surrounding template keys to outside of a template string.
 
 Outerspace is a template function that moves leading/trailing whitespace in the
 first/last template keys to the start/end of the string (respectively).
-
-## Example
 
 ```js
 const outerspace = require('outerspace')

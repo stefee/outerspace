@@ -1,6 +1,6 @@
 {
   "name": "outerspace",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Explode whitespace surrounding template keys to outside of the template string.",
   "main": "index.js",
   "scripts": {

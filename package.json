@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "Explode whitespace surrounding expressions in a template string to outside of the string.",
   "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
     "test": "standard && ./test.js"
   },

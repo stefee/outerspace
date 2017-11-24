@@ -1,6 +1,6 @@
 {
   "name": "outerspace",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Explode whitespace surrounding expressions in a template string to outside of the string.",
   "main": "index.js",
   "types": "index.d.ts",

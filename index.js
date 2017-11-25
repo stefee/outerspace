@@ -17,7 +17,7 @@ function outerspace (strings, ...exprs) {
   let acc = ''
   acc += leadingSpace || ''
   acc += strings[0] || ''
-  acc += firstExpr.replace(/^\s*/, '') || ''
+  acc += firstExpr.substring(leadingSpace.length)
   acc = strings.slice(1, -1)
       .reduce((acc, str, i) => acc + (str || '') + (exprs[i + 1] || ''), acc)
   acc += exprs.slice(strings.length - 1).join('') || ''

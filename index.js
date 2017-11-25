@@ -21,7 +21,7 @@ function outerspace (strings, ...exprs) {
   acc = strings.slice(1, -1)
       .reduce((acc, str, i) => acc + (str || '') + (exprs[i + 1] || ''), acc)
   acc += exprs.slice(strings.length - 1).join('') || ''
-  if (acc.trim()) acc = acc.replace(/\s*$/, '')
+  acc = acc.substring(0, acc.length - trailingSpace.length)
   acc += strings[strings.length - 1] || ''
   acc += trailingSpace || ''
   return acc

@@ -33,6 +33,12 @@ test('explode empty expr', function (t) {
   t.end()
 })
 
+test('explode only whitespace expr', function (t) {
+  t.plan(1)
+  t.equal(outerspace` ${'    '} `, '      ')
+  t.end()
+})
+
 test('explode null expr', function (t) {
   t.plan(1)
   t.equal(outerspace` ${null} `, '  ')

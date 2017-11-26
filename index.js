@@ -1,7 +1,7 @@
 module.exports = outerspace
 
-const leadingSpaceRegExp = /^\s*/
-const trailingSpaceRegExp = /\s*$/
+const RE_LEADING = /^\s*/
+const RE_TRAILING = /\s*$/
 
 /*
   Template function: move leading/trailing whitespace in the first/last
@@ -14,8 +14,8 @@ function outerspace (strings, ...exprs) {
 
   const firstExpr = exprs[0] || ''
   const lastExpr = exprs[exprs.length - 1] || ''
-  const leadingSpace = firstExpr.match(leadingSpaceRegExp)[0]
-  const trailingSpace = lastExpr.match(trailingSpaceRegExp)[0]
+  const leadingSpace = firstExpr.match(RE_LEADING)[0]
+  const trailingSpace = lastExpr.match(RE_TRAILING)[0]
 
   let acc = ''
   acc += leadingSpace || ''
@@ -34,12 +34,12 @@ outerspace.before = function (s, before) {
   if (!s && !before) return ''
   if (!s) return before
   if (!before) return s
-  return s.match(leadingSpaceRegExp)[0] + before + s.replace(/^\s*/, '')
+  return s.match(RE_LEADING)[0] + before + s.replace(RE_LEADING, '')
 }
 
 outerspace.after = function (s, after) {
   if (!s && !after) return ''
   if (!s) return after
   if (!after) return s
-  return s.replace(trailingSpaceRegExp, '') + after + s.match(/\s*$/)[0]
+  return s.replace(RE_TRAILING, '') + after + s.match(RE_TRAILING)[0]
 }

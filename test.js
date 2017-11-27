@@ -36,8 +36,11 @@ test('outerspace empty expr', function (t) {
 })
 
 test('outerspace only whitespace expr', function (t) {
-  t.plan(1)
+  t.plan(4)
   t.equal(outerspace` ${'    '} `, '      ')
+  t.equal(outerspace` ${'    '}\n `, '     \n ')
+  t.equal(outerspace` \n${'    '} `, ' \n     ')
+  t.equal(outerspace` ${' \n   '} `, '  \n    ')
   t.end()
 })
 
@@ -53,6 +56,151 @@ test('outerspace undefined expr', function (t) {
   t.end()
 })
 
+// outerspace.wrap
+
+test('wrap', function (t) {
+  t.plan(1)
+  t.equal(outerspace.wrap('hi ', '   he  ', 'llo'), '   hi hello  ')
+  t.end()
+})
+
+test('wrap multiple words', function (t) {
+  t.plan(1)
+  t.equal(outerspace.wrap('hi ', '   he  \n ', 'llo world'), '   hi hello world  \n ')
+  t.end()
+})
+
+test('wrap empty', function (t) {
+  t.plan(1)
+  t.equal(outerspace.wrap('', '', ''), '')
+  t.end()
+})
+
+test('wrap only whitespace', function (t) {
+  t.plan(3)
+  t.equal(outerspace.wrap('  ', '   ', '\n '), '     \n ')
+  t.equal(outerspace.wrap(' \n', '   ', '  '), ' \n     ')
+  t.equal(outerspace.wrap(' ', '  \n ', '  '), '   \n   ')
+  t.end()
+})
+
+test('wrap empty first argument', function (t) {
+  t.plan(2)
+  t.equal(outerspace.wrap('', 'hello', ' world'), 'hello world')
+  t.equal(outerspace.wrap('', 'hello ', 'world'), 'helloworld ')
+  t.end()
+})
+
+test('wrap empty second argument', function (t) {
+  t.plan(2)
+  t.equal(outerspace.wrap('hello', '', ' world'), 'hello world')
+  t.equal(outerspace.wrap('hello ', '', 'world'), 'hello world')
+  t.end()
+})
+
+test('wrap empty third argument', function (t) {
+  t.plan(2)
+  t.equal(outerspace.wrap('hello ', 'world', ''), 'hello world')
+  t.equal(outerspace.wrap('hello', ' world', ''), ' helloworld')
+  t.end()
+})
+
+test('wrap null first argument', function (t) {
+  t.plan(2)
+  t.equal(outerspace.wrap(null, 'hello', ' world'), 'hello world')
+  t.equal(outerspace.wrap(null, 'hello ', 'world'), 'helloworld ')
+  t.end()
+})
+
+test('wrap null second argument', function (t) {
+  t.plan(2)
+  t.equal(outerspace.wrap('hello', null, ' world'), 'hello world')
+  t.equal(outerspace.wrap('hello ', null, 'world'), 'hello world')
+  t.end()
+})
+
+test('wrap null third argument', function (t) {
+  t.plan(2)
+  t.equal(outerspace.wrap('hello ', 'world', null), 'hello world')
+  t.equal(outerspace.wrap('hello', ' world', null), ' helloworld')
+  t.end()
+})
+
+test('wrap undefined first argument', function (t) {
+  t.plan(2)
+  t.equal(outerspace.wrap(void 0, 'hello', ' world'), 'hello world')
+  t.equal(outerspace.wrap(void 0, 'hello ', 'world'), 'helloworld ')
+  t.end()
+})
+
+test('wrap undefined second argument', function (t) {
+  t.plan(2)
+  t.equal(outerspace.wrap('hello', void 0, ' world'), 'hello world')
+  t.equal(outerspace.wrap('hello ', void 0, 'world'), 'hello world')
+  t.end()
+})
+
+test('wrap undefined third argument', function (t) {
+  t.plan(2)
+  t.equal(outerspace.wrap('hello ', 'world', void 0), 'hello world')
+  t.equal(outerspace.wrap('hello', ' world', void 0), ' helloworld')
+  t.end()
+})
+
+test('wrap empty first argument, whitespace other arguments', function (t) {
+  t.plan(1)
+  t.equal(outerspace.wrap('', '   ', '\n'), '\n   ')
+  t.end()
+})
+
+test('wrap empty second argument, whitespace other arguments', function (t) {
+  t.plan(1)
+  t.equal(outerspace.wrap('   ', '', '\n'), '   \n')
+  t.end()
+})
+
+test('wrap empty third argument, whitespace other arguments', function (t) {
+  t.plan(1)
+  t.equal(outerspace.wrap('   ', '\n', ''), '\n   ')
+  t.end()
+})
+
+test('wrap null first argument, whitespace other arguments', function (t) {
+  t.plan(1)
+  t.equal(outerspace.wrap(null, '   ', '\n'), '\n   ')
+  t.end()
+})
+
+test('wrap null second argument, whitespace other arguments', function (t) {
+  t.plan(1)
+  t.equal(outerspace.wrap('   ', null, '\n'), '   \n')
+  t.end()
+})
+
+test('wrap null third argument, whitespace other arguments', function (t) {
+  t.plan(1)
+  t.equal(outerspace.wrap('   ', '\n', null), '\n   ')
+  t.end()
+})
+
+test('wrap undefined first argument, whitespace other arguments', function (t) {
+  t.plan(1)
+  t.equal(outerspace.wrap(void 0, '   ', '\n'), '\n   ')
+  t.end()
+})
+
+test('wrap undefined second argument, whitespace other arguments', function (t) {
+  t.plan(1)
+  t.equal(outerspace.wrap('   ', void 0, '\n'), '   \n')
+  t.end()
+})
+
+test('wrap undefined third argument, whitespace other arguments', function (t) {
+  t.plan(1)
+  t.equal(outerspace.wrap('   ', '\n', void 0), '\n   ')
+  t.end()
+})
+
 // outerspace.before
 
 test('before', function (t) {
@@ -61,7 +209,7 @@ test('before', function (t) {
   t.end()
 })
 
-test('before multiple', function (t) {
+test('before multiple words', function (t) {
   t.plan(1)
   t.equal(outerspace.before('  \n llo world', 'he'), '  \n hello world')
   t.end()
@@ -74,8 +222,9 @@ test('before empty', function (t) {
 })
 
 test('before only whitespace', function (t) {
-  t.plan(1)
+  t.plan(2)
   t.equal(outerspace.before('  ', '   '), '     ')
+  t.equal(outerspace.before('  ', ' \n'), ' \n  ')
   t.end()
 })
 
@@ -139,7 +288,7 @@ test('before undefined second argument, whitespace first argument', function (t)
   t.end()
 })
 
-// after
+// outerspace.after
 
 test('after', function (t) {
   t.plan(1)
@@ -147,7 +296,7 @@ test('after', function (t) {
   t.end()
 })
 
-test('after multiple', function (t) {
+test('after multiple words', function (t) {
   t.plan(1)
   t.equal(outerspace.after('he  \n ', 'llo world'), 'hello world  \n ')
   t.end()
@@ -160,8 +309,9 @@ test('after empty', function (t) {
 })
 
 test('after only whitespace', function (t) {
-  t.plan(1)
+  t.plan(2)
   t.equal(outerspace.after('  ', '   '), '     ')
+  t.equal(outerspace.after('  ', '\n '), '  \n ')
   t.end()
 })
 

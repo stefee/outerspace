@@ -5,41 +5,60 @@ const RE_TRAILING = /\s*$/
 
 /*
   Template function: move leading/trailing whitespace in the first/last
-  template expressions to the start/end of the string (respectively).
+  expressions to the start/end of the string (respectively).
 */
 function outerspace (strings, ...exprs) {
   if (!exprs.length && !strings.length) return ''
   if (!exprs.length) return strings.join('')
   if (!strings.length) return exprs.join('')
 
-  const firstExpr = exprs[0] || ''
-  const lastExpr = exprs[exprs.length - 1] || ''
-  const leadingSpace = firstExpr.match(RE_LEADING)[0]
-  const trailingSpace = lastExpr.match(RE_TRAILING)[0]
+  // capture first expression through to last expression and strings between
+  let s = ''
+  s += exprs[0] || ''
+  s = strings.slice(1, -1)
+      .reduce((acc, str, i) => acc + (str || '') + (exprs[i + 1] || ''), s)
+  s += exprs.slice(strings.length - 1).join('') || ''
 
+  return outerspace.wrap(strings[0], s, strings[strings.length - 1])
+}
+
+/*
+  Wrap first and third arguments around second and move leading/trailing
+  whitespace in second argument to the start/end of the return (respectively).
+  If second argument is only whitespace, concatenate arguments in order instead.
+*/
+outerspace.wrap = function (before, s, after) {
+  if (!s) return (before || '') + (after || '')
+  if (!s.trim() && !before) return (after || '') + (s || '')
+  if (!s.trim() && !after) return (s || '') + (before || '')
+  if (!s.trim()) return (before || '') + (s || '') + (after || '')
   let acc = ''
-  acc += leadingSpace || ''
-  acc += strings[0] || ''
-  acc += firstExpr.substring(leadingSpace.length)
-  acc = strings.slice(1, -1)
-      .reduce((acc, str, i) => acc + (str || '') + (exprs[i + 1] || ''), acc)
-  acc += exprs.slice(strings.length - 1).join('') || ''
-  acc = acc.substring(0, acc.length - trailingSpace.length)
-  acc += strings[strings.length - 1] || ''
-  acc += trailingSpace || ''
+  acc += s.match(RE_LEADING)[0] || ''
+  acc += before || ''
+  acc += s.trim() || ''
+  acc += after || ''
+  acc += s.match(RE_TRAILING)[0] || ''
   return acc
 }
 
+/*
+  Prepend second argument to first and move leading whitespace in first to the
+  start of the return.
+  If first argument is only whitespace, concatenate arguments (second + first).
+*/
 outerspace.before = function (s, before) {
-  if (!s && !before) return ''
-  if (!s) return before
-  if (!before) return s
-  return s.match(RE_LEADING)[0] + before + s.replace(RE_LEADING, '')
+  if (!s) return before || ''
+  if (!s.trim()) return (before || '') + (s || '')
+  return s.match(RE_LEADING)[0] + (before || '') + s.replace(RE_LEADING, '')
 }
 
+/*
+  Append second argument to first and move trailing whitespace in first to the
+  end of the return.
+  If first argument is only whitespace, concatenate arguments (first + second).
+*/
 outerspace.after = function (s, after) {
-  if (!s && !after) return ''
-  if (!s) return after
-  if (!after) return s
-  return s.replace(RE_TRAILING, '') + after + s.match(RE_TRAILING)[0]
+  if (!s) return after || ''
+  if (!s.trim()) return (s || '') + (after || '')
+  return s.replace(RE_TRAILING, '') + (after || '') + s.match(RE_TRAILING)[0]
 }

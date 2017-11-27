@@ -29,8 +29,6 @@ function outerspace (strings, ...exprs) {
 */
 outerspace.wrap = function (before, s, after) {
   if (!s) return (before || '') + (after || '')
-  if (!s.trim() && !before) return (after || '') + (s || '')
-  if (!s.trim() && !after) return (s || '') + (before || '')
   if (!s.trim()) return (before || '') + (s || '') + (after || '')
   let acc = ''
   acc += s.match(RE_LEADING)[0] || ''

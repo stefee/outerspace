@@ -35,6 +35,42 @@ test('outerspace empty expr', function (t) {
   t.end()
 })
 
+test('outerspace only expr', function (t) {
+  t.plan(1)
+  t.equal(outerspace`${'hey'}`, 'hey')
+  t.end()
+})
+
+test('outerspace only whitespace expr', function (t) {
+  t.plan(1)
+  t.equal(outerspace`${' \n  '}`, ' \n  ')
+  t.end()
+})
+
+test('outerspace empty before', function (t) {
+  t.plan(1)
+  t.equal(outerspace`${'hey'} `, 'hey ')
+  t.end()
+})
+
+test('outerspace empty after, whitespace expr', function (t) {
+  t.plan(1)
+  t.equal(outerspace` ${'  \n '}`, '   \n ')
+  t.end()
+})
+
+test('outerspace empty before', function (t) {
+  t.plan(1)
+  t.equal(outerspace`${'hey'} `, 'hey ')
+  t.end()
+})
+
+test('outerspace empty after, whitespace expr', function (t) {
+  t.plan(1)
+  t.equal(outerspace` ${'  \n '}`, '   \n ')
+  t.end()
+})
+
 test('outerspace only whitespace expr', function (t) {
   t.plan(4)
   t.equal(outerspace` ${'    '} `, '      ')
@@ -149,7 +185,7 @@ test('wrap undefined third argument', function (t) {
 
 test('wrap empty first argument, whitespace other arguments', function (t) {
   t.plan(1)
-  t.equal(outerspace.wrap('', '   ', '\n'), '\n   ')
+  t.equal(outerspace.wrap('', '   ', '\n'), '   \n')
   t.end()
 })
 
@@ -161,13 +197,13 @@ test('wrap empty second argument, whitespace other arguments', function (t) {
 
 test('wrap empty third argument, whitespace other arguments', function (t) {
   t.plan(1)
-  t.equal(outerspace.wrap('   ', '\n', ''), '\n   ')
+  t.equal(outerspace.wrap('   ', '\n', ''), '   \n')
   t.end()
 })
 
 test('wrap null first argument, whitespace other arguments', function (t) {
   t.plan(1)
-  t.equal(outerspace.wrap(null, '   ', '\n'), '\n   ')
+  t.equal(outerspace.wrap(null, '   ', '\n'), '   \n')
   t.end()
 })
 
@@ -179,13 +215,13 @@ test('wrap null second argument, whitespace other arguments', function (t) {
 
 test('wrap null third argument, whitespace other arguments', function (t) {
   t.plan(1)
-  t.equal(outerspace.wrap('   ', '\n', null), '\n   ')
+  t.equal(outerspace.wrap('   ', '\n', null), '   \n')
   t.end()
 })
 
 test('wrap undefined first argument, whitespace other arguments', function (t) {
   t.plan(1)
-  t.equal(outerspace.wrap(void 0, '   ', '\n'), '\n   ')
+  t.equal(outerspace.wrap(void 0, '   ', '\n'), '   \n')
   t.end()
 })
 
@@ -197,7 +233,7 @@ test('wrap undefined second argument, whitespace other arguments', function (t) 
 
 test('wrap undefined third argument, whitespace other arguments', function (t) {
   t.plan(1)
-  t.equal(outerspace.wrap('   ', '\n', void 0), '\n   ')
+  t.equal(outerspace.wrap('   ', '\n', void 0), '   \n')
   t.end()
 })
 

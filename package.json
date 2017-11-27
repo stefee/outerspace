@@ -1,7 +1,7 @@
 {
   "name": "outerspace",
   "version": "0.3.0",
-  "description": "Explode whitespace surrounding expressions in a template string to outside of the string.",
+  "description": "Preserve whitespace surrounding expressions in a template string.",
   "main": "index.js",
   "types": "index.d.ts",
   "scripts": {
@@ -19,7 +19,8 @@
     "string",
     "template string",
     "surrounding",
-    "explode",
+    "extract",
+    "preserve",
     "trim"
   ],
   "author": "Stef <stef@srilq.email>",

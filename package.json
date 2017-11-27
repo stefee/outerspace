@@ -1,6 +1,6 @@
 {
   "name": "outerspace",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Preserve whitespace surrounding expressions in a template string.",
   "main": "index.js",
   "types": "index.d.ts",

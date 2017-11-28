@@ -53,15 +53,15 @@ test('outerspace empty before', function (t) {
   t.end()
 })
 
-test('outerspace empty after, whitespace expr', function (t) {
+test('outerspace empty before, whitespace expr', function (t) {
   t.plan(1)
-  t.equal(outerspace` ${'  \n '}`, '   \n ')
+  t.equal(outerspace`${'  \n '} `, '  \n  ')
   t.end()
 })
 
-test('outerspace empty before', function (t) {
+test('outerspace empty after', function (t) {
   t.plan(1)
-  t.equal(outerspace`${'hey'} `, 'hey ')
+  t.equal(outerspace` ${'hey'}`, ' hey')
   t.end()
 })
 

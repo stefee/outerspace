@@ -16,7 +16,7 @@ function outerspace (strings, ...exprs) {
   let s = ''
   s += exprs[0] || ''
   s = strings.slice(1, -1)
-      .reduce((acc, str, i) => acc + (str || '') + (exprs[i + 1] || ''), s)
+    .reduce((acc, str, i) => acc + (str || '') + (exprs[i + 1] || ''), s)
   s += exprs.slice(strings.length - 1).join('') || ''
 
   return outerspace.wrap(strings[0], s, strings[strings.length - 1])

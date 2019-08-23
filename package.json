@@ -30,7 +30,7 @@
   },
   "homepage": "https://github.com/srilq/outerspace#readme",
   "devDependencies": {
-    "standard": "^10.0.3",
-    "tape": "^4.8.0"
+    "standard": "^14.0.2",
+    "tape": "^4.11.0"
   }
 }

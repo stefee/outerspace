@@ -1,6 +1,6 @@
 # outerspace
 
-[![npm version](https://img.shields.io/npm/v/outerspace.svg?style=flat-square)](https://npmjs.org/package/outerspace) [![build status](https://img.shields.io/travis/srilq/outerspace/latest.svg?style=flat-square)](https://travis-ci.org/srilq/outerspace)
+[![npm version](https://img.shields.io/npm/v/outerspace.svg?style=flat-square)](https://npmjs.org/package/outerspace) [![build status](https://img.shields.io/travis/stefee/outerspace/latest.svg?style=flat-square)](https://travis-ci.com/stefee/outerspace)
 [![downloads](https://img.shields.io/npm/dm/outerspace.svg?style=flat-square)](https://npmjs.org/package/outerspace) [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/feross/standard)
 
 > Preserve whitespace surrounding expressions in a template string.
